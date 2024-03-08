@@ -37,6 +37,7 @@ export default class HolbertonCourse {
     return this._students;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   checkType(value, type, errorVariable) {
     let errorMessage = '';
     if (!errorMessage) {
@@ -58,11 +59,11 @@ export default class HolbertonCourse {
 
     if (type === 'array') {
       if (
-        !Array.isArray(value) ||
-        !value.every((item) => typeof item === 'string')
+        !Array.isArray(value) || !value.every((item) => typeof item === 'string')
       ) {
         throw new TypeError(errorMessage);
       }
+      // eslint-disable-next-line valid-typeof
     } else if (typeof value !== type) {
       throw new TypeError(errorMessage);
     }
