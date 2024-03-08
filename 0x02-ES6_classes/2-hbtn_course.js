@@ -38,30 +38,33 @@ export default class HolbertonCourse {
   }
 
   checkType(value, type, errorVariable) {
-    let errorMessage = "";
+    let errorMessage = '';
     if (!errorMessage) {
-        switch (type) {
-            case 'string':
-                errorMessage = `${errorVariable} must be string`;
-                break;
-            case 'number':
-                errorMessage = `${errorVariable} must be number`;
-                break;
-            case 'array':
-                errorMessage = `${errorVariable} must be array of strings`;
-                break;
-        
-            default:
-                errorMessage = 'Invalid type';
-        }
+      switch (type) {
+        case 'string':
+          errorMessage = `${errorVariable} must be string`;
+          break;
+        case 'number':
+          errorMessage = `${errorVariable} must be number`;
+          break;
+        case 'array':
+          errorMessage = `${errorVariable} must be array of strings`;
+          break;
+
+        default:
+          errorMessage = 'Invalid type';
+      }
     }
 
     if (type === 'array') {
-        if (!Array.isArray(value) || !value.every((item) => typeof item === 'string')) {
-            throw new TypeError(errorMessage);
-        }
-    } else if (typeof value !== type) {
+      if (
+        !Array.isArray(value) ||
+        !value.every((item) => typeof item === 'string')
+      ) {
         throw new TypeError(errorMessage);
+      }
+    } else if (typeof value !== type) {
+      throw new TypeError(errorMessage);
     }
   }
 }
